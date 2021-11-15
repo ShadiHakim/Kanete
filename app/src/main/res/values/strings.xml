@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Kanete</string>
+
+    <!--  LoginActivity  -->
+    <string name="LoginActivity_login">Login</string>
+    <string name="LoginActivity_email">email@email.com</string>
+    <string name="LoginActivity_pass">Password</string>
+    <string name="LoginActivity_signup">Don\'t have an account! SignUp</string>
+
+    <!--  SignupActivity  -->
+    <string name="SignupActivity_radio_type">What type of user are you?</string>
+    <string name="SignupActivity_radio_customer">Customer</string>
+    <string name="SignupActivity_radio_store">Store</string>
+    <string name="SignupActivity_button">Signup</string>
+    <string name="SignupActivity_first_name">Enter your first name:</string>
+    <string name="SignupActivity_first_name_ex">Ex. Sam</string>
+    <string name="SignupActivity_last_name">Enter your last name:</string>
+    <string name="SignupActivity_last_name_ex">Ex. Smith</string>
+    <string name="SignupActivity_gender">Chose your gender:</string>
+    <string name="SignupActivity_gender_M">Male</string>
+    <string name="SignupActivity_gender_F">Female</string>
+    <string name="SignupActivity_email">Enter your email address:</string>
+    <string name="SignupActivity_email_ex">Ex. sam@smith.com</string>
+    <string name="SignupActivity_password">Enter your password:</string>
+    <string name="SignupActivity_repassword">Re-enter your password:</string>
+    <string name="SignupActivity_password_ex">Ex. Password</string>
+    <string name="SignupActivity_store_name">Enter your store name:</string>
+    <string name="SignupActivity_store_name_ex">Ex. Store</string>
+    <string name="SignupActivity_store_address">Enter your store address:</string>
+    <string name="SignupActivity_store_address_ex">Ex. Ariel, Israel</string>
+    <string name="SignupActivity_store_phone">Enter your store phone number:</string>
+    <string name="SignupActivity_store_phone_ex">050–123–4567</string>
+    <string name="SignupActivity_store_facebook">Enter the store facebook page:</string>
+    <string name="SignupActivity_store_facebook_ex">Ex. facebook url</string>
+    <string name="SignupActivity_store_instagram">Enter the store instagram page:</string>
+    <string name="SignupActivity_store_instagram_ex">Ex. instagram url</string>
+    <string name="SignupActivity_store_website">Enter the store website:</string>
+    <string name="SignupActivity_store_website_ex">Ex. website url</string>
+
+
+</resources>
