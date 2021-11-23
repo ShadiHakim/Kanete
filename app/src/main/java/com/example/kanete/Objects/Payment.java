@@ -6,7 +6,7 @@ public class Payment {
     private String credit_card;
     private String expiration_date;
     private String name_holder;
-    private String cvv;
+    private int cvv;
     private boolean is_default;
 
     public String getID() {
@@ -49,11 +49,11 @@ public class Payment {
         this.name_holder = name_holder;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         this.cvv = cvv;
     }
 

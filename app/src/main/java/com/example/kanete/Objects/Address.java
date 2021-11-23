@@ -7,7 +7,7 @@ public class Address {
     private String city;
     private String street;
     private String number;
-    private String zipcode;
+    private int zipcode;
     private boolean is_default;
 
     public String getID() {
@@ -58,11 +58,11 @@ public class Address {
         this.number = number;
     }
 
-    public String getZipcode() {
+    public int getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(String zipcode) {
+    public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
 
