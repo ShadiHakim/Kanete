@@ -5,6 +5,7 @@ public class Order {
     private String store_UID;
     private String customer_UID;
     private String product_ID;
+    private int quantity;
     private String status;
 
     public String getID() {
@@ -37,6 +38,14 @@ public class Order {
 
     public void setProduct_ID(String product_ID) {
         this.product_ID = product_ID;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getStatus() {
