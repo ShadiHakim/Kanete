@@ -1,4 +1,4 @@
-package com.example.kanete.Activities;
+package com.example.kanete.AuthenticationActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.kanete.Models.Customer;
 import com.example.kanete.Models.Store;
+import com.example.kanete.Models.UserType;
 import com.example.kanete.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -90,7 +91,7 @@ public class SignupActivity extends AppCompatActivity {
         editTextPhone = findViewById(R.id.editTextPhone);
         editTextSignupEmailStore = findViewById(R.id.editTextSignupEmailStore);
         editTextSignupPasswordStore = findViewById(R.id.editTextSignupPasswordStore);
-        editTextRePasswordStore = findViewById(R.id.editTextRePasswordStore);
+        editTextRePasswordStore = findViewById(R.id.editTextSignupRePasswordStore);
         editTextFacebook = findViewById(R.id.editTextFacebook);
         editTextInstagram = findViewById(R.id.editTextInstagram);
         editTextWebsite = findViewById(R.id.editTextWebsite);
@@ -129,8 +130,7 @@ public class SignupActivity extends AppCompatActivity {
                 customer.setLast_Name(lastname);
                 customer.setGender(gender);
 
-                // TODO move all Strings to strings.xml
-                authenticationViewModel.signup_auth("type_customer", email, password, customer, null);
+                authenticationViewModel.signup_auth(UserType.types.Customer, email, password, customer, null);
             }
 
         }
@@ -165,7 +165,7 @@ public class SignupActivity extends AppCompatActivity {
                 store.setInstagram(instagram);
                 store.setWebsite(website);
 
-                authenticationViewModel.signup_auth("type_store", email, password, null, store);
+                authenticationViewModel.signup_auth(UserType.types.Store, email, password, null, store);
             }
 
         }

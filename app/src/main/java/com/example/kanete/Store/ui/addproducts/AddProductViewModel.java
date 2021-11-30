@@ -1,4 +1,4 @@
-package com.example.kanete.Store.ui.add;
+package com.example.kanete.Store.ui.addproducts;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

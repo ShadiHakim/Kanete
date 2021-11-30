@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.SignupActivity">
+    tools:context=".AuthenticationActivities.SignupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -151,14 +151,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewGender">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/radioButtonMale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/SignupActivity_gender_M" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/radioButtonFelmale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -176,7 +176,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/RadioGroupGender" />
 
             <EditText
-                android:id="@+id/editTextSignupEmail"
+                android:id="@+id/editTextSignupEmailCustomer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -196,10 +196,10 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/SignupActivity_password"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSignupEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSignupEmailCustomer" />
 
             <EditText
-                android:id="@+id/editTextSignupPassword"
+                android:id="@+id/editTextSignupPasswordCustomer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -219,10 +219,10 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/SignupActivity_repassword"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSignupPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSignupPasswordCustomer" />
 
             <EditText
-                android:id="@+id/editTextRePassword"
+                android:id="@+id/editTextSignupRePasswordCustomer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -304,7 +304,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextStoreName" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTextAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -324,7 +324,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/SignupActivity_store_phone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextAddress" />
 
             <EditText
                 android:id="@+id/editTextPhone"
@@ -340,6 +340,75 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewPhone" />
 
             <TextView
+                android:id="@+id/textViewSignupEmailStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/SignupActivity_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+            <EditText
+                android:id="@+id/editTextSignupEmailStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/SignupActivity_email_ex"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSignupEmailStore" />
+
+            <TextView
+                android:id="@+id/textViewSignupPasswordStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/SignupActivity_password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSignupEmailStore" />
+
+            <EditText
+                android:id="@+id/editTextSignupPasswordStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/SignupActivity_password_ex"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSignupPasswordStore" />
+
+            <TextView
+                android:id="@+id/textViewSignupRePasswordStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/SignupActivity_repassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSignupPasswordStore" />
+
+            <EditText
+                android:id="@+id/editTextSignupRePasswordStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="@string/SignupActivity_password_ex"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSignupRePasswordStore" />
+
+            <TextView
                 android:id="@+id/textViewfacebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -347,7 +416,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/SignupActivity_store_facebook"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSignupRePasswordStore" />
 
             <EditText
                 android:id="@+id/editTextFacebook"

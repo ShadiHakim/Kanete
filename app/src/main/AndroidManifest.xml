@@ -10,10 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kanete">
         <activity
-            android:name=".Activities.SignupActivity"
+            android:name=".Customer.CustomerMainActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".Store.StoreMainActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.kanete.AuthenticationActivities.SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.kanete.AuthenticationActivities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

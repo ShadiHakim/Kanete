@@ -1,4 +1,4 @@
-package com.example.kanete.Activities;
+package com.example.kanete.AuthenticationActivities;
 
 import android.util.Patterns;
 import android.widget.EditText;

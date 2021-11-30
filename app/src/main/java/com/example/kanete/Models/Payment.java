@@ -1,4 +1,4 @@
-package com.example.kanete.Objects;
+package com.example.kanete.Models;
 
 public class Payment {
     private String ID;

@@ -1,4 +1,4 @@
-package com.example.kanete.Store.ui.add;
+package com.example.kanete.Store.ui.addproducts;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,7 +32,7 @@ public class AddProductFragment extends Fragment {
         binding = AddProductFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textAddProduct;
+        final TextView textView = binding.textAddproducts;
         addProductViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

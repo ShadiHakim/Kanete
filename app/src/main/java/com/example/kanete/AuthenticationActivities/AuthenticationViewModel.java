@@ -1,4 +1,4 @@
-package com.example.kanete.Activities;
+package com.example.kanete.AuthenticationActivities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModel;
 import com.example.kanete.Customer.CustomerMainActivity;
 import com.example.kanete.Models.Customer;
 import com.example.kanete.Models.Store;
+import com.example.kanete.Models.UserType;
+import com.example.kanete.Store.StoreMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,6 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 // TODO move all Strings to strings.xml
@@ -45,17 +48,22 @@ public class AuthenticationViewModel extends ViewModel {
         return db;
     }
 
-    public void signup_auth(String type, String email, String password, Customer customer, Store store){
+    public String getUID(){
+        return mAuth.getValue().getCurrentUser().getUid();
+    }
 
+    public void signup_auth(UserType.types type, String email, String password, Customer customer, Store store){
         mAuth.getValue().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this_activity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            if (type.equals("type_customer")){
+                            if (type.equals(UserType.types.Customer)){
+                                type_signup(UserType.types.Customer);
                                 customerSignup_database(customer);
                             }
                             else {
+                                type_signup(UserType.types.Store);
                                 storeSignup_database(store);
                             }
                         } else {
@@ -67,14 +75,13 @@ public class AuthenticationViewModel extends ViewModel {
     }
 
     public void customerSignup_database(Customer customer){
-        FirebaseUser user = mAuth.getValue().getCurrentUser();
         db.getValue().collection("Customers")
-                .document(user.getUid())
+                .document(getUID())
                 .set(customer)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        this_activity.startActivity(new Intent(this_activity, CustomerMainActivity.class));
+                        goTo(CustomerMainActivity.class);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -86,14 +93,13 @@ public class AuthenticationViewModel extends ViewModel {
     }
 
     public void storeSignup_database(Store store){
-        FirebaseUser user = mAuth.getValue().getCurrentUser();
-        db.getValue().collection("Store")
-                .document(user.getUid())
+        db.getValue().collection("Stores")
+                .document(getUID())
                 .set(store)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(this_activity, "Success", Toast.LENGTH_SHORT).show();
+                        goTo(StoreMainActivity.class);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -102,5 +108,71 @@ public class AuthenticationViewModel extends ViewModel {
                         Toast.makeText(this_activity, "failed FirebaseFirestore", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void type_signup(UserType.types type){
+        UserType userType = new UserType(type);
+        db.getValue().collection("UserType")
+                .document(getUID())
+                .set(userType)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        // onSuccess
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(this_activity, "failed FirebaseFirestore", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    public void login_auth(String email, String password){
+        mAuth.getValue().signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        type_login();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(this_activity, "failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    public void type_login(){
+        db.getValue().collection("UserType")
+                .document(getUID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        UserType userType = documentSnapshot.toObject(UserType.class);
+                        if (userType.getType().equals(UserType.types.Customer)){
+                            goTo(CustomerMainActivity.class);
+                        }
+                        else {
+                            goTo(StoreMainActivity.class);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(this_activity, "failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    public void goTo(final Class<?> activity) {
+        Intent i = new Intent(this_activity, activity);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        this_activity.startActivity(i);
+        this_activity.finish();
     }
 }
