@@ -14,6 +14,7 @@ import com.example.kanete.Models.Customer;
 import com.example.kanete.Models.Store;
 import com.example.kanete.Models.UserType;
 import com.example.kanete.Store.StoreMainActivity;
+import com.example.kanete.helper.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +25,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import io.grpc.okhttp.internal.Util;
 
 public class AuthenticationViewModel extends ViewModel {
 
@@ -80,7 +83,7 @@ public class AuthenticationViewModel extends ViewModel {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        goTo(CustomerMainActivity.class);
+                        Utils.goTo(this_activity, CustomerMainActivity.class);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -98,7 +101,7 @@ public class AuthenticationViewModel extends ViewModel {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        goTo(StoreMainActivity.class);
+                        Utils.goTo(this_activity, StoreMainActivity.class);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -153,10 +156,10 @@ public class AuthenticationViewModel extends ViewModel {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         UserType userType = documentSnapshot.toObject(UserType.class);
                         if (userType.getType().equals(UserType.types.Customer)){
-                            goTo(CustomerMainActivity.class);
+                            Utils.goTo(this_activity, CustomerMainActivity.class);
                         }
                         else {
-                            goTo(StoreMainActivity.class);
+                            Utils.goTo(this_activity, StoreMainActivity.class);
                         }
                     }
                 })
@@ -166,12 +169,5 @@ public class AuthenticationViewModel extends ViewModel {
                         Toast.makeText(this_activity, "failed", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-    public void goTo(final Class<?> activity) {
-        Intent i = new Intent(this_activity, activity);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        this_activity.startActivity(i);
-        this_activity.finish();
     }
 }

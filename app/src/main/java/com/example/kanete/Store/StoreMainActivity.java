@@ -8,9 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.kanete.Customer.ui.account.AccountFragment;
-import com.example.kanete.Customer.ui.cart.CartFragment;
-import com.example.kanete.Customer.ui.home.HomeFragment;
 import com.example.kanete.R;
 import com.example.kanete.Store.ui.account.AccountStoreFragment;
 import com.example.kanete.Store.ui.addproducts.AddProductFragment;

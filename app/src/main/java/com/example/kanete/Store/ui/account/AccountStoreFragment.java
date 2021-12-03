@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kanete.R;
@@ -26,12 +27,17 @@ public class AccountStoreFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        accountStoreViewModel =
-                new ViewModelProvider(this).get(AccountStoreViewModel.class);
+        accountStoreViewModel = new AccountStoreViewModel(this.getActivity());
 
         binding = AccountStoreFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        init();
+
+        return root;
+    }
+
+    public void init(){
         final TextView textView = binding.textAccountstore;
         accountStoreViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -39,7 +45,14 @@ public class AccountStoreFragment extends Fragment {
                 textView.setText(s);
             }
         });
-        return root;
+
+        final Button button_signout = binding.AccountStoreFragmentSignoutButton;
+        button_signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                accountStoreViewModel.sign_out();
+            }
+        });
     }
 
     @Override

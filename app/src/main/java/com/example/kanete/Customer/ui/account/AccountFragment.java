@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,12 +22,17 @@ public class AccountFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        accountViewModel =
-                new ViewModelProvider(this).get(AccountViewModel.class);
+        accountViewModel = new AccountViewModel(this.getActivity());
 
         binding = FragmentAccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        init();
+
+        return root;
+    }
+
+    public void init(){
         final TextView textView = binding.textAccount;
         accountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -34,7 +40,14 @@ public class AccountFragment extends Fragment {
                 textView.setText(s);
             }
         });
-        return root;
+
+        final Button button_signout = binding.AccountFragmentSignoutButton;
+        button_signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                accountViewModel.sign_out();
+            }
+        });
     }
 
     @Override

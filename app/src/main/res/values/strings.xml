@@ -37,12 +37,16 @@
     <string name="SignupActivity_store_website">Enter the store website:</string>
     <string name="SignupActivity_store_website_ex">Ex. website url</string>
 
+    // menus
     <string name="title_home">Home</string>
     <string name="title_cart">Cart</string>
     <string name="title_account">Account</string>
     <string name="title_my_products">My Products</string>
     <string name="title_add_product">Add Product</string>
     <string name="title_account_store">Account</string>
+
+    // AccountStoreFragment
+    <string name="AccountStoreFragment_signout">SignOut</string>
 
 
 </resources>

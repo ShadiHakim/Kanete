@@ -10,16 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kanete">
         <activity
-            android:name=".Customer.CustomerMainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Store.StoreMainActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.example.kanete.AuthenticationActivities.SignupActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.example.kanete.AuthenticationActivities.LoginActivity"
+            android:name=".Splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Customer.CustomerMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Store.StoreMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AuthenticationActivities.SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AuthenticationActivities.LoginActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
