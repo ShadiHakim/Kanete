@@ -25,7 +25,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-// TODO move all Strings to strings.xml
 public class AuthenticationViewModel extends ViewModel {
 
     private final Activity this_activity;
