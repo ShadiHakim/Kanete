@@ -48,5 +48,21 @@
     // AccountStoreFragment
     <string name="AccountStoreFragment_signout">SignOut</string>
 
+    // AddProductFragment
+    <string name="AddProductFragment_title">Add Product</string>
+    <string name="AddProductFragment_name">Enter the product\'s name:</string>
+    <string name="AddProductFragment_name_ex">Ex. Nike Shoes</string>
+    <string name="AddProductFragment_images">Add images of the product:</string>
+    <string name="AddProductFragment_images_ex">Product Images</string>
+    <string name="AddProductFragment_price">Enter the Product\'s price:</string>
+    <string name="AddProductFragment_price_ex">Ex. 149.99 ₪</string>
+    <string name="AddProductFragment_description">Enter the products description:</string>
+    <string name="AddProductFragment_description_ex">Ex. color, size, materials…</string>
+    <string name="AddProductFragment_quantity">Enter the product\'s quantity:</string>
+    <string name="AddProductFragment_quantity_ex">Ex. 20</string>
+    <string name="AddProductFragment_category">Enter the product\'s category:</string>
+    <string name="AddProductFragment_category_ex">Ex. Shoes</string>
+    <string name="AddProductFragment_button_add">Add Product</string>
+
 
 </resources>

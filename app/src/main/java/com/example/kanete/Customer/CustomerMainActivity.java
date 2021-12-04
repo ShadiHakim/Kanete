@@ -2,6 +2,7 @@ package com.example.kanete.Customer;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.kanete.Customer.ui.account.AccountFragment;
 import com.example.kanete.Customer.ui.cart.CartFragment;
@@ -15,8 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
 public class CustomerMainActivity extends AppCompatActivity {
 
+    private BottomNavigationView navigation;
     final Fragment fragment1 = new HomeFragment();
     final Fragment fragment2 = new CartFragment();
     final Fragment fragment3 = new AccountFragment();
@@ -28,12 +33,25 @@ public class CustomerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.nav_view_customer);
+        init();
+    }
+
+    public void init(){
+        navigation = (BottomNavigationView) findViewById(R.id.nav_view_customer);
         navigation.setOnNavigationItemSelectedListener(onSelect);
 
         fm.beginTransaction().add(R.id.nav_host_fragment_activity_customer_main, fragment3, "3").hide(fragment3).commit();
         fm.beginTransaction().add(R.id.nav_host_fragment_activity_customer_main, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.nav_host_fragment_activity_customer_main,fragment1, "1").commit();
+
+        KeyboardVisibilityEvent.setEventListener(
+                this,
+                new KeyboardVisibilityEventListener() {
+                    @Override
+                    public void onVisibilityChanged(boolean isOpen) {
+                        navigation.setVisibility(isOpen ? View.GONE : View.VISIBLE);
+                    }
+                });
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener onSelect = new BottomNavigationView.OnNavigationItemSelectedListener() {

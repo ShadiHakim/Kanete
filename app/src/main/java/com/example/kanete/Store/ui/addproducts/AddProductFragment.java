@@ -32,14 +32,13 @@ public class AddProductFragment extends Fragment {
         binding = AddProductFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textAddproducts;
-        addProductViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        init();
+
         return root;
+    }
+
+    private void init() {
+
     }
 
     @Override

@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_store_main.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/add_product_fragment.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu_store.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.371875" />
       </map>
     </option>
