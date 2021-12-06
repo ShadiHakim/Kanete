@@ -42,7 +42,7 @@ public class CustomerMainActivity extends AppCompatActivity {
 
         fm.beginTransaction().add(R.id.nav_host_fragment_activity_customer_main, fragment3, "3").hide(fragment3).commit();
         fm.beginTransaction().add(R.id.nav_host_fragment_activity_customer_main, fragment2, "2").hide(fragment2).commit();
-        fm.beginTransaction().add(R.id.nav_host_fragment_activity_customer_main,fragment1, "1").commit();
+        fm.beginTransaction().add(R.id.nav_host_fragment_activity_customer_main, fragment1, "1").commit();
 
         KeyboardVisibilityEvent.setEventListener(
                 this,

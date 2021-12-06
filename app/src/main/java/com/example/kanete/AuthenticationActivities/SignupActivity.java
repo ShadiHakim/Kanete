@@ -1,6 +1,5 @@
 package com.example.kanete.AuthenticationActivities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
@@ -9,17 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.kanete.Models.Customer;
 import com.example.kanete.Models.Store;
-import com.example.kanete.Models.UserType;
+import com.example.kanete.Models.User;
 import com.example.kanete.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -130,7 +123,7 @@ public class SignupActivity extends AppCompatActivity {
                 customer.setLast_Name(lastname);
                 customer.setGender(gender);
 
-                authenticationViewModel.signup_auth(UserType.types.Customer, email, password, customer, null);
+                authenticationViewModel.signup_auth(User.types.Customer, email, password, customer, null);
             }
 
         }
@@ -165,7 +158,7 @@ public class SignupActivity extends AppCompatActivity {
                 store.setInstagram(instagram);
                 store.setWebsite(website);
 
-                authenticationViewModel.signup_auth(UserType.types.Store, email, password, null, store);
+                authenticationViewModel.signup_auth(User.types.Store, email, password, null, store);
             }
 
         }

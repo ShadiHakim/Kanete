@@ -7,22 +7,17 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.kanete.AuthenticationActivities.LoginActivity;
-import com.example.kanete.helper.Utils;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.kanete.Models.User;
 
 public class AccountStoreViewModel extends ViewModel {
 
     private final Activity this_activity;
-    private MutableLiveData<FirebaseAuth> mAuth;
     private MutableLiveData<String> mText;
 
     public AccountStoreViewModel(Activity activity) {
         this_activity = activity;
         mText = new MutableLiveData<>();
         mText.setValue("This is a store account fragment");
-        mAuth = new MutableLiveData<>();
-        mAuth.setValue(FirebaseAuth.getInstance());
     }
 
     public LiveData<String> getText() {
@@ -30,7 +25,9 @@ public class AccountStoreViewModel extends ViewModel {
     }
 
     public void sign_out(){
-        mAuth.getValue().signOut();
-        Utils.goTo(this_activity, LoginActivity.class);
+        User user = new User();
+        user.setThis_activity(this_activity);
+
+        user.signOut();
     }
 }
