@@ -1,5 +1,7 @@
 package com.example.kanete.Models;
 
+import com.google.firebase.firestore.Exclude;
+
 public class Address {
     private String ID;
     private String customer_UID;
@@ -10,6 +12,7 @@ public class Address {
     private int zipcode;
     private boolean is_default;
 
+    @Exclude
     public String getID() {
         return ID;
     }

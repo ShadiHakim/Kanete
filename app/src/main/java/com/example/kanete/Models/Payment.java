@@ -1,5 +1,7 @@
 package com.example.kanete.Models;
 
+import com.google.firebase.firestore.Exclude;
+
 public class Payment {
     private String ID;
     private String customer_UID;
@@ -9,6 +11,7 @@ public class Payment {
     private int cvv;
     private boolean is_default;
 
+    @Exclude
     public String getID() {
         return ID;
     }

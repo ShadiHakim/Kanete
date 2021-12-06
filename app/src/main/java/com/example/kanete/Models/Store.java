@@ -1,5 +1,7 @@
 package com.example.kanete.Models;
 
+import com.google.firebase.firestore.Exclude;
+
 public class Store {
     private String UID;
     private String img;
@@ -10,6 +12,7 @@ public class Store {
     private String instagram;
     private String website;
 
+    @Exclude
     public String getUID() {
         return UID;
     }

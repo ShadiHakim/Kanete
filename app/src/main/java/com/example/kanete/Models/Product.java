@@ -1,5 +1,7 @@
 package com.example.kanete.Models;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.util.ArrayList;
 
 public class Product {
@@ -13,6 +15,7 @@ public class Product {
     private int quantity;
     private String category;
 
+    @Exclude
     public String getID() {
         return ID;
     }

@@ -1,11 +1,14 @@
 package com.example.kanete.Models;
 
+import com.google.firebase.firestore.Exclude;
+
 public class CartItem {
     private String ID;
     private String customer_UID;
     private String product_ID;
     private int quantity;
 
+    @Exclude
     public String getID() {
         return ID;
     }

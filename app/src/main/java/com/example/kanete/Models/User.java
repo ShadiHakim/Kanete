@@ -22,7 +22,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class User {
     public enum types {Customer, Store}
 
-    @Exclude
     private Activity this_activity;
 
     private types type;
@@ -42,6 +41,7 @@ public class User {
         this.type = type;
     }
 
+    @Exclude
     public Activity getThis_activity() {
         return this_activity;
     }
@@ -55,6 +55,7 @@ public class User {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
+    @Exclude
     public boolean isLoggedIn(){
         return FirebaseAuth.getInstance().getCurrentUser() != null;
     }
