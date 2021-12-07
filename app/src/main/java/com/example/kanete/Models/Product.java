@@ -1,14 +1,32 @@
 package com.example.kanete.Models;
 
+import android.net.Uri;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Exclude;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Product {
     private String ID;
     private String store_UID;
     private String name;
-    private ArrayList<String> images;
+    private List<String> images;
     private String description;
     private String date_added;
     private double price;
@@ -40,11 +58,11 @@ public class Product {
         this.name = name;
     }
 
-    public ArrayList<String> getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<String> images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 
@@ -86,5 +104,62 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public MutableLiveData<Boolean> addProduct(Product product, List<Uri> images){
+        MutableLiveData<Boolean> booleanMutableLiveData = new MutableLiveData<>();
+        CollectionReference db = FirebaseFirestore.getInstance().collection("Products");
+        String ID = db.document().getId();
+        uploadImages(ID, images).observeForever(new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> img_urls) {
+                if (img_urls.size() == images.size()){
+                    product.setImages(img_urls);
+                    db.document(ID)
+                            .set(product)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    booleanMutableLiveData.postValue(true);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    booleanMutableLiveData.postValue(false);
+                                }
+                            });
+                }
+            }
+        });
+
+        return booleanMutableLiveData;
+    }
+
+    public MutableLiveData<List<String>> uploadImages(String product_id, List<Uri> images){
+        MutableLiveData<List<String>> img_urls = new MutableLiveData<>(new ArrayList<>());
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        for (Uri image :
+                images) {
+            StorageReference currentRef = storageRef.child("Product_Images/" + product_id + "/" + UUID.randomUUID().toString());
+            currentRef.putFile(image)
+                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()){
+                            currentRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String url = uri.toString();
+                                    List<String> cur = img_urls.getValue();
+                                    cur.add(url);
+                                    img_urls.postValue(cur);
+                                }
+                            });
+                        }
+                    }
+                });
+        }
+        return img_urls;
     }
 }

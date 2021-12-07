@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Kanete</string>
 
+    <string name="file_provider" translatable="false">com.example.kanete.fileprovider</string>
+
     <!--  LoginActivity  -->
     <string name="LoginActivity_login">Login</string>
     <string name="LoginActivity_email">email@email.com</string>
@@ -61,8 +63,20 @@
     <string name="AddProductFragment_quantity">Enter the product\'s quantity:</string>
     <string name="AddProductFragment_quantity_ex">Ex. 20</string>
     <string name="AddProductFragment_category">Enter the product\'s category:</string>
-    <string name="AddProductFragment_category_ex">Ex. Shoes</string>
+    <string name="AddProductFragment_category_ex">Choose category</string>
     <string name="AddProductFragment_button_add">Add Product</string>
+
+    <plurals name="pick_multi">
+        <item quantity="one">One image selected</item>
+        <item quantity="other">%1$d images selected</item>
+    </plurals>
+    <plurals name="pick_multi_more">
+        <item quantity="one">Please select one more image…</item>
+        <item quantity="other">Please select %1$d more images…</item>
+    </plurals>
+    <string name="pick_multi_limit">You have more than %1$d images selected…</string>
+
+
 
 
 </resources>
