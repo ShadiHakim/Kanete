@@ -12,8 +12,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -161,5 +163,25 @@ public class Product {
                 });
         }
         return img_urls;
+    }
+
+    public MutableLiveData<List<Product>> getAllProducts() {
+        MutableLiveData<List<Product>> products = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Products")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<Product> productList = new ArrayList<>();
+                        for (DocumentSnapshot documentSnapshot :
+                                queryDocumentSnapshots.getDocuments()) {
+                            Product product = documentSnapshot.toObject(Product.class);
+                            product.setID(documentSnapshot.getId());
+                            productList.add(product);
+                        }
+                        products.postValue(productList);
+                    }
+                });
+        return products;
     }
 }

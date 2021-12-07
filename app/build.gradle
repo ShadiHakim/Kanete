@@ -47,4 +47,5 @@ dependencies {
 
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3'
     implementation 'com.kroegerama:bottomsheet-imagepicker:1.1.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

@@ -129,7 +129,6 @@ public class AddProductFragment extends Fragment implements BottomSheetImagePick
             String description = editTextProductDescription.getText().toString();
             int quantity = Integer.parseInt(editTextProductQuantity.getText().toString().equals("") ? "0" : editTextProductQuantity.getText().toString());
             int category = spinnerProductCategory.getSelectedItemPosition();
-//            String category = spinnerProductCategory.getSelectedItem().toString();
 
             flag = addProductViewModel.checkName(name, editTextProductName);
             flag &= addProductViewModel.checkImages();
