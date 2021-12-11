@@ -1,4 +1,4 @@
-package com.example.kanete.Customer.ui.home.Adapters;
+package com.example.kanete.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

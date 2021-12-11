@@ -4,23 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kanete.Customer.ui.home.Adapters.CategoryRecyclerViewAdapter;
-import com.example.kanete.Customer.ui.home.Adapters.ProductRecyclerViewAdapter;
+import com.example.kanete.Adapters.CategoryRecyclerViewAdapter;
+import com.example.kanete.Adapters.ProductRecyclerViewAdapter;
 import com.example.kanete.Models.Category;
 import com.example.kanete.Models.Product;
 import com.example.kanete.databinding.FragmentHomeBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {

@@ -1,4 +1,4 @@
-package com.example.kanete.Customer.ui.home.Adapters;
+package com.example.kanete.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -23,6 +23,10 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
     public ProductRecyclerViewAdapter(Context context, List<Product> products) {
         this.inflater = LayoutInflater.from(context);
+        this.products = products;
+    }
+
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
