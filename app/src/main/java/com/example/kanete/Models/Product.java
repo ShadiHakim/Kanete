@@ -1,5 +1,6 @@
 package com.example.kanete.Models;
 
+import android.app.Activity;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -196,13 +198,15 @@ public class Product {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         List<Product> productList = new ArrayList<>();
-                        for (DocumentSnapshot documentSnapshot :
-                                value.getDocuments()) {
-                            Product product = documentSnapshot.toObject(Product.class);
-                            product.setID(documentSnapshot.getId());
-                            productList.add(product);
+                        if (value != null) { // TODO fix
+                            for (DocumentSnapshot documentSnapshot :
+                                    value.getDocuments()) {
+                                Product product = documentSnapshot.toObject(Product.class);
+                                product.setID(documentSnapshot.getId());
+                                productList.add(product);
+                            }
+                            products.postValue(productList);
                         }
-                        products.postValue(productList);
                     }
                 });
         return products;
