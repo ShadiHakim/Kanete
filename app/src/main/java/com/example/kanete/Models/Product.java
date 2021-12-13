@@ -20,6 +20,7 @@ import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -173,6 +174,7 @@ public class Product {
     public MutableLiveData<List<Product>> getAllProducts() {
         MutableLiveData<List<Product>> products = new MutableLiveData<>();
         FirebaseFirestore.getInstance().collection("Products")
+                .orderBy("date_added", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
