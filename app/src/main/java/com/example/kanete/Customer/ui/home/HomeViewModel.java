@@ -34,4 +34,8 @@ public class HomeViewModel extends ViewModel {
     public LiveData<List<Product>> getProducts() {
         return products;
     }
+
+    public LiveData<List<Product>> getProductsCategory(String categoryID){
+        return product.getProductsCategory(categoryID);
+    }
 }

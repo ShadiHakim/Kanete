@@ -86,7 +86,13 @@ public class HomeFragment extends Fragment implements CategoryRecyclerViewAdapte
     @Override
     public void onCategoryClick(View view, int position) {
         Category selectedCategory = categoryRecyclerViewAdapter.getCategory(position);
-        Toast.makeText(getActivity(), selectedCategory.getName(), Toast.LENGTH_SHORT).show();
+        homeViewModel.getProductsCategory(selectedCategory.getId()).observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+                productRecyclerViewAdapter.setProducts(products);
+                productRecyclerViewAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

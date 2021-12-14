@@ -2,6 +2,7 @@ package com.example.kanete.Models;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -256,6 +257,35 @@ public class Product implements Serializable {
                         }
                     });
         }
+        return products;
+    }
+
+    @Exclude
+    public LiveData<List<Product>> getProductsCategory(String categoryID) {
+        MutableLiveData<List<Product>> products = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Products")
+                .orderBy("date_added", Query.Direction.DESCENDING)
+                .whereEqualTo("category", categoryID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<Product> productList = new ArrayList<>();
+                        for (DocumentSnapshot documentSnapshot :
+                                queryDocumentSnapshots.getDocuments()) {
+                            Product product = documentSnapshot.toObject(Product.class);
+                            product.setID(documentSnapshot.getId());
+                            productList.add(product);
+                        }
+                        products.postValue(productList);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("getProductsCategory", "onFailure: " + e.toString());
+                    }
+                });
         return products;
     }
 }
