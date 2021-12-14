@@ -27,7 +27,7 @@ public class HomeViewModel extends ViewModel {
         products = product.getAllProducts();//TODO get by chunks
     }
 
-    public MutableLiveData<List<Category>> getCategories() {
+    public LiveData<List<Category>> getCategories() {
         return categories;
     }
 

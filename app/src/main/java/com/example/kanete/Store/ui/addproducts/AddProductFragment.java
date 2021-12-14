@@ -146,13 +146,10 @@ public class AddProductFragment extends Fragment implements BottomSheetImagePick
                 product.setQuantity(quantity);
                 product.setCategory(addProductViewModel.getCategories().getValue().get(category - 1).getId());
 
-                addProductViewModel.addProduct(product);
-
-                addProductViewModel.getSuccess().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                addProductViewModel.addProduct(product).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
                         Toast.makeText(getActivity(), aBoolean.toString(), Toast.LENGTH_SHORT).show();
-                        addProductViewModel.setSuccess(new MutableLiveData<>());
                         progressBarAddProduct.setVisibility(View.GONE);
                         resetAllViews();
                     }

@@ -5,6 +5,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
@@ -26,11 +27,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Product {
+public class Product implements Serializable {
     private String ID;
     private String store_UID;
     private String name;
@@ -114,7 +116,8 @@ public class Product {
         this.category = category;
     }
 
-    public MutableLiveData<Boolean> addProduct(Product product, List<Uri> images){
+    @Exclude
+    public LiveData<Boolean> addProduct(Product product, List<Uri> images){
         MutableLiveData<Boolean> booleanMutableLiveData = new MutableLiveData<>();
         CollectionReference db = FirebaseFirestore.getInstance().collection("Products");
         String ID = db.document().getId();
@@ -144,6 +147,7 @@ public class Product {
         return booleanMutableLiveData;
     }
 
+    @Exclude
     public MutableLiveData<List<String>> uploadImages(String product_id, List<Uri> images){
         MutableLiveData<List<String>> img_urls = new MutableLiveData<>(new ArrayList<>());
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -171,6 +175,7 @@ public class Product {
         return img_urls;
     }
 
+    @Exclude
     public MutableLiveData<List<Product>> getAllProducts() {
         MutableLiveData<List<Product>> products = new MutableLiveData<>();
         FirebaseFirestore.getInstance().collection("Products")
@@ -192,9 +197,11 @@ public class Product {
         return products;
     }
 
+    @Exclude
     public MutableLiveData<List<Product>> getMyProducts() {
         MutableLiveData<List<Product>> products = new MutableLiveData<>();
         FirebaseFirestore.getInstance().collection("Products")
+                .orderBy("date_added", Query.Direction.DESCENDING)
                 .whereEqualTo("store_UID", new User().getUID())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
@@ -212,5 +219,21 @@ public class Product {
                     }
                 });
         return products;
+    }
+
+    @Exclude
+    public MutableLiveData<List<String>> getProductImages(){
+        MutableLiveData<List<String>> images = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Products")
+                .document(this.ID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Product product = documentSnapshot.toObject(Product.class);
+                        images.postValue(product.getImages());
+                    }
+                });
+        return images;
     }
 }

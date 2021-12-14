@@ -89,7 +89,7 @@ public class User {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Utils.goTo(this_activity, CustomerMainActivity.class);
+                        Utils.goTo_emptyStack(this_activity, CustomerMainActivity.class);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -107,7 +107,7 @@ public class User {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Utils.goTo(this_activity, StoreMainActivity.class);
+                        Utils.goTo_emptyStack(this_activity, StoreMainActivity.class);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -162,10 +162,10 @@ public class User {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         User user = documentSnapshot.toObject(User.class);
                         if (user.getType().equals(User.types.Customer)){
-                            Utils.goTo(this_activity, CustomerMainActivity.class);
+                            Utils.goTo_emptyStack(this_activity, CustomerMainActivity.class);
                         }
                         else {
-                            Utils.goTo(this_activity, StoreMainActivity.class);
+                            Utils.goTo_emptyStack(this_activity, StoreMainActivity.class);
                         }
                     }
                 })
@@ -179,6 +179,6 @@ public class User {
 
     public void signOut(){
         FirebaseAuth.getInstance().signOut();
-        Utils.goTo(this_activity, LoginActivity.class);
+        Utils.goTo_emptyStack(this_activity, LoginActivity.class);
     }
 }

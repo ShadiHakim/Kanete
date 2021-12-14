@@ -3,17 +3,12 @@ package com.example.kanete.Store.ui.addproducts;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.example.kanete.Models.Category;
@@ -30,28 +25,18 @@ public class AddProductViewModel extends ViewModel {
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 100;
     private Activity this_activity;
     private User user;
-    private MutableLiveData<Boolean> success;
     private MutableLiveData<List<Category>> categories;
     private MutableLiveData<List<Uri>> chosen_images;
 
     public AddProductViewModel(Activity activity) {
         this_activity = activity;
         user = new User();
-        success = new MutableLiveData<>();
         categories = initCategories();
         chosen_images = new MutableLiveData<>();
     }
 
-    public MutableLiveData<List<Category>> getCategories() {
+    public LiveData<List<Category>> getCategories() {
         return categories;
-    }
-
-    public MutableLiveData<Boolean> getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(MutableLiveData<Boolean> success) {
-        this.success = success;
     }
 
     public List<String> getCategories_name() {
@@ -87,15 +72,10 @@ public class AddProductViewModel extends ViewModel {
         return true;
     }
 
-    public void addProduct(Product product){
+    public LiveData<Boolean> addProduct(Product product){
         product.setStore_UID(user.getUID());
         product.setDate_added(Utils.getCurrentDate());
-        product.addProduct(product, getChosen_images()).observeForever(new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                success.postValue(aBoolean);
-            }
-        });
+        return product.addProduct(product, getChosen_images());
     }
 
     // Value Checks

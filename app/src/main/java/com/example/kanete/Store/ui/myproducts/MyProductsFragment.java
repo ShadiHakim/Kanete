@@ -1,5 +1,7 @@
 package com.example.kanete.Store.ui.myproducts;
 
+import static com.example.kanete.helper.Utils.goTo_withProduct;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,11 +17,12 @@ import android.widget.TextView;
 
 import com.example.kanete.Adapters.ProductRecyclerViewAdapter;
 import com.example.kanete.Models.Product;
+import com.example.kanete.ProductManager.ProductViewActivity;
 import com.example.kanete.databinding.MyProductsFragmentBinding;
 
 import java.util.List;
 
-public class MyProductsFragment extends Fragment {
+public class MyProductsFragment extends Fragment implements ProductRecyclerViewAdapter.ProductClickListener{
 
     private MyProductsViewModel myProductsViewModel;
     private MyProductsFragmentBinding binding;
@@ -51,7 +54,7 @@ public class MyProductsFragment extends Fragment {
                 if (recyclerViewMyProducts.getAdapter() == null) {
                     recyclerViewMyProducts.setLayoutManager(new LinearLayoutManager(getContext()));
                     productRecyclerViewAdapter = new ProductRecyclerViewAdapter(getContext(), products);
-//                    productRecyclerViewAdapter.setClickListener(this);
+                    productRecyclerViewAdapter.setClickListener(MyProductsFragment.this);
                     recyclerViewMyProducts.setAdapter(productRecyclerViewAdapter);
                 }
                 else {
@@ -66,5 +69,11 @@ public class MyProductsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onProductClick(View view, int position) {
+        Product selectedProduct = productRecyclerViewAdapter.getProduct(position);
+        goTo_withProduct(getActivity(), ProductViewActivity.class, selectedProduct);
     }
 }

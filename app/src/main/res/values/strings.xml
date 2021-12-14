@@ -76,7 +76,8 @@
     </plurals>
     <string name="pick_multi_limit">You have more than %1$d images selected…</string>
 
-
+    <!--  ProductViewActivity  -->
+    <string name="ProductViewActivity_add_to_cart">Add to Cart</string>
 
 
 </resources>

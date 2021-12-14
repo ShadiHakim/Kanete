@@ -57,21 +57,21 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
         @Override
         public void onClick(View view) {
-            if (categoryClickListener != null) categoryClickListener.onItemClick(view, getAdapterPosition());
+            if (categoryClickListener != null) categoryClickListener.onCategoryClick(view, getAdapterPosition());
         }
     }
 
-    Category getItem(int id) {
+    public Category getCategory(int id) {
         return categories.get(id);
     }
 
     // allows clicks events to be caught
-    void setClickListener(CategoryClickListener itemClickListener) {
+    public void setClickListener(CategoryClickListener itemClickListener) {
         this.categoryClickListener = itemClickListener;
     }
 
     // parent activity will implement this method to respond to click events
     public interface CategoryClickListener {
-        void onItemClick(View view, int position);
+        void onCategoryClick(View view, int position);
     }
 }

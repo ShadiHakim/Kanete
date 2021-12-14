@@ -64,21 +64,21 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
         @Override
         public void onClick(View view) {
-            if (productClickListener != null) productClickListener.onItemClick(view, getAdapterPosition());
+            if (productClickListener != null) productClickListener.onProductClick(view, getAdapterPosition());
         }
     }
 
-    Product getItem(int id) {
+    public Product getProduct(int id) {
         return products.get(id);
     }
 
     // allows clicks events to be caught
-    void setClickListener(ProductClickListener itemClickListener) {
+    public void setClickListener(ProductClickListener itemClickListener) {
         this.productClickListener = itemClickListener;
     }
 
     // parent activity will implement this method to respond to click events
     public interface ProductClickListener {
-        void onItemClick(View view, int position);
+        void onProductClick(View view, int position);
     }
 }
