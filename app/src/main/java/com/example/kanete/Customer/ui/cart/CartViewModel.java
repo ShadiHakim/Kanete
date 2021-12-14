@@ -1,19 +1,56 @@
 package com.example.kanete.Customer.ui.cart;
 
+import android.app.Activity;
+
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
+
+import com.example.kanete.Models.CartItem;
+import com.example.kanete.Models.Product;
+import com.example.kanete.Models.User;
+
+import java.util.List;
 
 public class CartViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private Activity this_activity;
+    private CartItem cartItem;
+    private MutableLiveData<List<CartItem>> cartItems;
+    private MutableLiveData<List<Product>> cartProducts;
 
-    public CartViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is cart fragment");
+    public CartViewModel(FragmentActivity activity) {
+        this_activity = activity;
+        cartItem = new CartItem();
+        cartItems = new MutableLiveData<>();
+        cartProducts = new MutableLiveData<>();
+        initCart();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void initCart(){
+        cartItem.getCart(new User().getUID()).observeForever(new Observer<List<CartItem>>() {
+            @Override
+            public void onChanged(List<CartItem> cart) {
+                cartItems.postValue(cart);
+                Product.getProductsOfCart(cart).observeForever(new Observer<List<Product>>() {
+                    @Override
+                    public void onChanged(List<Product> products) {
+                        if (products.size() == cart.size()){
+                            cartProducts.postValue(products);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    public LiveData<List<Product>> getCart() {
+        return cartProducts;
+    }
+
+    public MutableLiveData<List<CartItem>> getCartItems() {
+        return cartItems;
     }
 }

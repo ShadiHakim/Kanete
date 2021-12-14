@@ -79,5 +79,8 @@
     <!--  ProductViewActivity  -->
     <string name="ProductViewActivity_add_to_cart">Add to Cart</string>
 
+    <!--  CartFragment  -->
+    <string name="CartFragment_Buy_All">Buy All</string>
+    <string name="CartFragment_Buy_Selected">Buy Selected</string>
 
 </resources>

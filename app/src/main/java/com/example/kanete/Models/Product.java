@@ -236,4 +236,26 @@ public class Product implements Serializable {
                 });
         return images;
     }
+
+    @Exclude
+    public static MutableLiveData<List<Product>> getProductsOfCart(List<CartItem> cartItems) {
+        MutableLiveData<List<Product>> products = new MutableLiveData<>(new ArrayList<>());
+        for (CartItem item:
+                cartItems) {
+            FirebaseFirestore.getInstance().collection("Products")
+                    .document(item.getProduct_ID())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Product p = documentSnapshot.toObject(Product.class);
+                            p.setID(documentSnapshot.getId());
+                            List<Product> curProducts = products.getValue();
+                            curProducts.add(p);
+                            products.postValue(curProducts);
+                        }
+                    });
+        }
+        return products;
+    }
 }

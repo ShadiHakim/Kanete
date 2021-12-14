@@ -23,7 +23,6 @@ public class ProductViewModel extends ViewModel {
     public ProductViewModel(Activity activity) {
         this.this_activity = activity;
         this.type = activity.getIntent().getStringExtra("userType");
-        Toast.makeText(activity, type, Toast.LENGTH_SHORT).show();
         this.product = (Product) activity.getIntent().getSerializableExtra("selectedProduct"); // TODO check if exists
         this.images = product.getProductImages();
     }
