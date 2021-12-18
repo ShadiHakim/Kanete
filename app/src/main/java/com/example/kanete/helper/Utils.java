@@ -27,6 +27,11 @@ public class Utils {
         this_activity.startActivity(i);
     }
 
+    public static void goTo(final Activity this_activity, final Class<?> activity){
+        Intent i = new Intent(this_activity, activity);
+        this_activity.startActivity(i);
+    }
+
     public static String getCurrentDate(){
         return new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
     }

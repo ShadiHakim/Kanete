@@ -59,7 +59,7 @@ public class CartItem {
     }
 
     @Exclude
-    public LiveData<Boolean> addToCart(){
+    public LiveData<Boolean> addToCart(){ // TODO check if already added
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
         FirebaseFirestore.getInstance().collection("CartItems")
                 .add(this)
@@ -99,5 +99,21 @@ public class CartItem {
                     }
                 });
         return cartProducts;
+    }
+
+    public void removeFormCart(List<CartItem> cartItems) {
+        for (CartItem cartItem :
+                cartItems) {
+            FirebaseFirestore.getInstance().collection("CartItems")
+                    .document(cartItem.getID())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                        }
+                    });
+        }
+
     }
 }

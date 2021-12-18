@@ -13,12 +13,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.kanete.Customer.Address.AddressActivity;
 import com.example.kanete.databinding.FragmentAccountBinding;
+import com.example.kanete.helper.Utils;
 
 public class AccountFragment extends Fragment {
 
     private AccountViewModel accountViewModel;
     private FragmentAccountBinding binding;
+
+    private Button buttonAddress;
+    private Button buttonPayment;
+    private Button AccountFragmentSignoutButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,22 +39,35 @@ public class AccountFragment extends Fragment {
     }
 
     public void init(){
-        final TextView textView = binding.textAccount;
-        accountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        buttonAddress = binding.buttonAddress;
+        buttonPayment = binding.buttonPayment;
+        AccountFragmentSignoutButton = binding.AccountFragmentSignoutButton;
 
-        final Button button_signout = binding.AccountFragmentSignoutButton;
-        button_signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                accountViewModel.sign_out();
-            }
-        });
+        buttonAddress.setOnClickListener(addresslistener);
+        buttonPayment.setOnClickListener(paymentlistener);
+        AccountFragmentSignoutButton.setOnClickListener(signOutlistener);
     }
+
+    View.OnClickListener signOutlistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            accountViewModel.sign_out();
+        }
+    };
+
+    View.OnClickListener addresslistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Utils.goTo(getActivity(), AddressActivity.class);
+        }
+    };
+
+    View.OnClickListener paymentlistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
 
     @Override
     public void onDestroyView() {

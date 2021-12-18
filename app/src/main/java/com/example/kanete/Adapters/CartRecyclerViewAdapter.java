@@ -16,9 +16,12 @@ import com.example.kanete.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerViewAdapter.ViewHolder> {
 
+    private boolean flagVisible = false;
+    private boolean allChecked = false;
     private List<Product> products;
     private List<CartItem> cartItems;
     private LayoutInflater inflater;
@@ -38,6 +41,22 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         this.cartItems = cartItems;
     }
 
+    public boolean isFlagVisible() {
+        return flagVisible;
+    }
+
+    public void setFlagVisible(boolean flagVisible) {
+        this.flagVisible = flagVisible;
+    }
+
+    public boolean isAllChecked() {
+        return allChecked;
+    }
+
+    public void setAllChecked(boolean allChecked) {
+        this.allChecked = allChecked;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recyclerview_product_cart_row, parent, false);
@@ -47,10 +66,17 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Product product = products.get(position);
+        holder.checkBoxSelectProduct.setVisibility(flagVisible ? View.VISIBLE : View.GONE);
+        holder.checkBoxSelectProduct.setChecked(allChecked);
         Picasso.get().load(product.getImages().get(0)).into(holder.imageViewProductitem);
         holder.textViewNameProductitem.setText(product.getName());
         holder.textViewPriceProductitem.setText(product.getPrice() + " ₪");
-        holder.textViewQuantityProductitem.setText("* " + cartItems.get(position).getQuantity());
+        CartItem cartItem = cartItems.stream()
+                .filter(item -> item.getProduct_ID()
+                .equals(product.getID()))
+                .collect(Collectors.toList()).get(0);
+        holder.textViewQuantityProductitem.setText("* " + cartItem.getQuantity());
+        holder.checkBoxSelectProduct.setTag(cartItem);
     }
 
     @Override

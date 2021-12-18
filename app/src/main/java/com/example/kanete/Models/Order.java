@@ -7,6 +7,8 @@ public class Order {
     private String store_UID;
     private String customer_UID;
     private String product_ID;
+    private String address_ID;
+    private String Payment_ID;
     private int quantity;
     private String status;
 
@@ -41,6 +43,22 @@ public class Order {
 
     public void setProduct_ID(String product_ID) {
         this.product_ID = product_ID;
+    }
+
+    public String getAddress_ID() {
+        return address_ID;
+    }
+
+    public void setAddress_ID(String address_ID) {
+        this.address_ID = address_ID;
+    }
+
+    public String getPayment_ID() {
+        return Payment_ID;
+    }
+
+    public void setPayment_ID(String payment_ID) {
+        Payment_ID = payment_ID;
     }
 
     public int getQuantity() {
