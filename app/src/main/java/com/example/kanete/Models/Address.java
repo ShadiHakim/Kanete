@@ -120,15 +120,18 @@ public class Address {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        FirebaseFirestore.getInstance().collection("Addresses")
-                                .document(default_address.getID())
-                                .update("default_adr", false)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        flag.postValue(true);
-                                    }
-                                });
+                        if (default_address.getID() != null && !default_address.getID().equals(documentReference.getId()))
+                            FirebaseFirestore.getInstance().collection("Addresses")
+                                    .document(default_address.getID())
+                                    .update("default_adr", false)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            flag.postValue(true);
+                                        }
+                                    });
+                        else
+                            flag.postValue(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -167,6 +170,7 @@ public class Address {
         return myAddress;
     }
 
+    @Exclude
     public LiveData<Boolean> updateDefault(Address default_address) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
         FirebaseFirestore.getInstance().collection("Addresses")

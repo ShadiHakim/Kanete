@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kanete.Customer.Address.AddressActivity;
+import com.example.kanete.Customer.Payment.PaymentActivity;
 import com.example.kanete.databinding.FragmentAccountBinding;
 import com.example.kanete.helper.Utils;
 
@@ -65,7 +66,7 @@ public class AccountFragment extends Fragment {
     View.OnClickListener paymentlistener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            Utils.goTo(getActivity(), PaymentActivity.class);
         }
     };
 

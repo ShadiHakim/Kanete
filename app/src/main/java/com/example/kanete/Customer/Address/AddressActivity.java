@@ -12,18 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.kanete.Adapters.AddressRecyclerViewAdapter;
-import com.example.kanete.Adapters.ProductRecyclerViewAdapter;
-import com.example.kanete.Customer.ui.home.HomeFragment;
 import com.example.kanete.Models.Address;
-import com.example.kanete.Models.CartItem;
-import com.example.kanete.Models.Product;
 import com.example.kanete.R;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AddressActivity extends AppCompatActivity implements AddressRecyclerViewAdapter.AddressClickListener{
 
@@ -49,11 +43,11 @@ public class AddressActivity extends AppCompatActivity implements AddressRecycle
         recyclerViewAddress = findViewById(R.id.recyclerViewAddress);
         dialog = new Dialog(AddressActivity.this);
 
-        setup_recyclerViewProducts();
+        setup_recyclerViewAddress();
         cardViewAddAddress.setOnClickListener(addAddresslistener);
     }
 
-    public void setup_recyclerViewProducts(){
+    public void setup_recyclerViewAddress(){
         addressViewModel.getMyAddresses().observeForever(new Observer<List<Address>>() {
             @Override
             public void onChanged(List<Address> addresses) {

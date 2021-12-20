@@ -12,12 +12,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kanete.Models.Address;
-import com.example.kanete.Models.Product;
 import com.example.kanete.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AddressRecyclerViewAdapter extends RecyclerView.Adapter<AddressRecyclerViewAdapter.ViewHolder> {
 

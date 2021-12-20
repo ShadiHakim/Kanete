@@ -25,86 +25,57 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageViewPinAddressRow"
+                android:id="@+id/imageViewCardPaymentRow"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/ic_location_pin"
+                android:src="@drawable/ic_credit_card"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewContactNameAddressRow"
+                android:id="@+id/textViewNameHolderPaymentRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="ContactName"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
+                android:text="NameHolder"
+                app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentRow"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewPhoneAddressRow"
+                android:id="@+id/textViewCreditCardPaymentRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Phone"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
-                app:layout_constraintTop_toBottomOf="@+id/textViewContactNameAddressRow" />
+                android:text="CreditCard"
+                app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentRow"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNameHolderPaymentRow" />
 
             <TextView
-                android:id="@+id/textViewZipCodeAddressRow"
+                android:id="@+id/textViewExpirationDatePaymentRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="ZipeCode"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
-                app:layout_constraintTop_toBottomOf="@+id/textViewPhoneAddressRow" />
+                android:text="ExpirationDate"
+                app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentRow"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCreditCardPaymentRow" />
 
             <TextView
-                android:id="@+id/textViewStreetAddressRow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Strees"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
-                app:layout_constraintTop_toBottomOf="@+id/textViewZipCodeAddressRow" />
-
-            <TextView
-                android:id="@+id/textViewNumberAddressRow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Number"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewStreetAddressRow"
-                app:layout_constraintStart_toEndOf="@+id/textViewStreetAddressRow"
-                app:layout_constraintTop_toTopOf="@+id/textViewStreetAddressRow" />
-
-            <TextView
-                android:id="@+id/textViewCityAddressRow"
+                android:id="@+id/textViewCVVPaymentRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="City"
+                android:text="CVV"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
-                app:layout_constraintTop_toBottomOf="@+id/textViewStreetAddressRow" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentRow"
+                app:layout_constraintTop_toBottomOf="@+id/textViewExpirationDatePaymentRow" />
 
-            <TextView
-                android:id="@+id/textViewCountryAddressRow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Country"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewCityAddressRow"
-                app:layout_constraintStart_toEndOf="@+id/textViewCityAddressRow"
-                app:layout_constraintTop_toTopOf="@+id/textViewCityAddressRow" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
