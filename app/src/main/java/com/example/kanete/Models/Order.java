@@ -11,6 +11,7 @@ public class Order {
     private String Payment_ID;
     private int quantity;
     private String status;
+    private boolean complete;
 
     @Exclude
     public String getID() {
@@ -75,5 +76,13 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 }

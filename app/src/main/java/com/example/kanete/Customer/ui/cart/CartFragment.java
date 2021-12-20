@@ -106,6 +106,7 @@ public class CartFragment extends Fragment implements CartRecyclerViewAdapter.Pr
         public void onClick(View v) {
             cartViewModel.removeSelectedItemsFormCart();
             constraintLayoutCartEdit.setVisibility(View.GONE);
+            buttonBuy.setText(R.string.CartFragment_Buy_All);
             cartRecyclerViewAdapter.setFlagVisible(false);
             cartRecyclerViewAdapter.setAllChecked(false);
             checkBoxSelectAll.setChecked(false);

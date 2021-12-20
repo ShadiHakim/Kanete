@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewPinAddressRow"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_location_pin"
+                android:tint="#575151"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewContactNameAddressRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="ContactName"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewPhoneAddressRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Phone"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
+                app:layout_constraintTop_toBottomOf="@+id/textViewContactNameAddressRow" />
+
+            <TextView
+                android:id="@+id/textViewZipCodeAddressRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="ZipeCode"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPhoneAddressRow" />
+
+            <TextView
+                android:id="@+id/textViewStreetAddressRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Strees"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
+                app:layout_constraintTop_toBottomOf="@+id/textViewZipCodeAddressRow" />
+
+            <TextView
+                android:id="@+id/textViewNumberAddressRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Number"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewStreetAddressRow"
+                app:layout_constraintStart_toEndOf="@+id/textViewStreetAddressRow"
+                app:layout_constraintTop_toTopOf="@+id/textViewStreetAddressRow" />
+
+            <TextView
+                android:id="@+id/textViewCityAddressRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="City"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressRow"
+                app:layout_constraintTop_toBottomOf="@+id/textViewStreetAddressRow" />
+
+            <TextView
+                android:id="@+id/textViewCountryAddressRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Country"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewCityAddressRow"
+                app:layout_constraintStart_toEndOf="@+id/textViewCityAddressRow"
+                app:layout_constraintTop_toTopOf="@+id/textViewCityAddressRow" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
