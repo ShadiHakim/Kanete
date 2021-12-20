@@ -146,23 +146,36 @@ public class Payment {
     @Exclude
     public LiveData<Boolean> updateDefault(Payment default_payment) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-        FirebaseFirestore.getInstance().collection("Payments")
-                .document(default_payment.getID())
-                .update("default_pay",false)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        FirebaseFirestore.getInstance().collection("Payments")
-                                .document(getID())
-                                .update("default_pay", true)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        flag.postValue(true);
-                                    }
-                                });
-                    }
-                });
+        if (default_payment.getID() != null){
+            FirebaseFirestore.getInstance().collection("Payments")
+                    .document(default_payment.getID())
+                    .update("default_pay",false)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            FirebaseFirestore.getInstance().collection("Payments")
+                                    .document(getID())
+                                    .update("default_pay", true)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            flag.postValue(true);
+                                        }
+                                    });
+                        }
+                    });
+        }
+        else {
+            FirebaseFirestore.getInstance().collection("Payments")
+                    .document(getID())
+                    .update("default_pay", true)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            flag.postValue(true);
+                        }
+                    });
+        }
         return flag;
     }
 }

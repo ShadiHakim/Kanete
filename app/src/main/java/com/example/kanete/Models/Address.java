@@ -173,23 +173,36 @@ public class Address {
     @Exclude
     public LiveData<Boolean> updateDefault(Address default_address) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-        FirebaseFirestore.getInstance().collection("Addresses")
-                .document(default_address.getID())
-                .update("default_adr",false)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        FirebaseFirestore.getInstance().collection("Addresses")
-                                .document(getID())
-                                .update("default_adr", true)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        flag.postValue(true);
-                                    }
-                                });
-                    }
-                });
+        if (default_address.getID() != null){
+            FirebaseFirestore.getInstance().collection("Addresses")
+                    .document(default_address.getID())
+                    .update("default_adr",false)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            FirebaseFirestore.getInstance().collection("Addresses")
+                                    .document(getID())
+                                    .update("default_adr", true)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            flag.postValue(true);
+                                        }
+                                    });
+                        }
+                    });
+        }
+        else {
+            FirebaseFirestore.getInstance().collection("Addresses")
+                    .document(getID())
+                    .update("default_adr", true)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            flag.postValue(true);
+                        }
+                    });
+        }
         return flag;
     }
 }
