@@ -204,4 +204,20 @@ public class Payment {
                 });
         return myDefaultPayment;
     }
+
+    @Exclude
+    public static LiveData<Payment> getPaymentByID(String ID){
+        MutableLiveData<Payment> payment = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Payments")
+                .document(ID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Payment res = documentSnapshot.toObject(Payment.class);
+                        payment.postValue(res);
+                    }
+                });
+        return payment;
+    }
 }

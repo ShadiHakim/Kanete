@@ -27,6 +27,12 @@ public class Utils {
         this_activity.startActivity(i);
     }
 
+    public static void goTo_withExtra(final Activity this_activity, final Class<?> activity, String string){
+        Intent i = new Intent(this_activity, activity);
+        i.putExtra("Extra", string);
+        this_activity.startActivity(i);
+    }
+
     public static void goTo(final Activity this_activity, final Class<?> activity){
         Intent i = new Intent(this_activity, activity);
         this_activity.startActivity(i);

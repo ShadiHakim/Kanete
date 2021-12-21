@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageViewOrderitem"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textViewNameOrderitem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:singleLine="true"
+                android:text="NAME"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageViewOrderitem"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewPriceOrderitem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="100 ₪"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewOrderitem"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNameOrderitem" />
+
+            <TextView
+                android:id="@+id/textViewQuantityOrderitem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="* 10"
+                app:layout_constraintBottom_toTopOf="@+id/buttonOrderitem"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonOrderitem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Expand"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewOrderitem" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonOrderitem">
+
+                <ImageView
+                    android:id="@+id/imageViewPinAddressOrderitem"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_location_pin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewContactNameAddressOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="ContactName"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressOrderitem"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewPhoneAddressOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Phone"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressOrderitem"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewContactNameAddressOrderitem" />
+
+                <TextView
+                    android:id="@+id/textViewZipCodeAddressOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="ZipeCode"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressOrderitem"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPhoneAddressOrderitem" />
+
+                <TextView
+                    android:id="@+id/textViewStreetAddressOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Strees"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressOrderitem"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewZipCodeAddressOrderitem" />
+
+                <TextView
+                    android:id="@+id/textViewNumberAddressOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Number"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewStreetAddressOrderitem"
+                    app:layout_constraintStart_toEndOf="@+id/textViewStreetAddressOrderitem"
+                    app:layout_constraintTop_toTopOf="@+id/textViewStreetAddressOrderitem" />
+
+                <TextView
+                    android:id="@+id/textViewCityAddressOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="City"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewPinAddressOrderitem"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStreetAddressOrderitem" />
+
+                <TextView
+                    android:id="@+id/textViewCountryAddressOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Country"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewCityAddressOrderitem"
+                    app:layout_constraintStart_toEndOf="@+id/textViewCityAddressOrderitem"
+                    app:layout_constraintTop_toTopOf="@+id/textViewCityAddressOrderitem" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutAddress">
+
+                <ImageView
+                    android:id="@+id/imageViewCardPaymentOrderitem"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_credit_card"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewNameHolderPaymentOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="NameHolder"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentOrderitem"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewCreditCardPaymentOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="CreditCard"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentOrderitem"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewNameHolderPaymentOrderitem" />
+
+                <TextView
+                    android:id="@+id/textViewExpirationDatePaymentOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="ExpirationDate"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentOrderitem"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCreditCardPaymentOrderitem" />
+
+                <TextView
+                    android:id="@+id/textViewCVVPaymentOrderitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="CVV"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewCardPaymentOrderitem"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewExpirationDatePaymentOrderitem" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

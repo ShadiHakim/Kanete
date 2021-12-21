@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kanete.Customer.Address.AddressActivity;
 import com.example.kanete.Customer.Payment.PaymentActivity;
+import com.example.kanete.OrderManager.OrdersListActivity;
 import com.example.kanete.databinding.FragmentAccountBinding;
 import com.example.kanete.helper.Utils;
 
@@ -25,6 +26,7 @@ public class AccountFragment extends Fragment {
 
     private Button buttonAddress;
     private Button buttonPayment;
+    private Button buttonCustomerOrders;
     private Button AccountFragmentSignoutButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,10 +44,12 @@ public class AccountFragment extends Fragment {
     public void init(){
         buttonAddress = binding.buttonAddress;
         buttonPayment = binding.buttonPayment;
+        buttonCustomerOrders = binding.buttonCustomerOrders;
         AccountFragmentSignoutButton = binding.AccountFragmentSignoutButton;
 
         buttonAddress.setOnClickListener(addresslistener);
         buttonPayment.setOnClickListener(paymentlistener);
+        buttonCustomerOrders.setOnClickListener(customerOrderslistener);
         AccountFragmentSignoutButton.setOnClickListener(signOutlistener);
     }
 
@@ -67,6 +71,13 @@ public class AccountFragment extends Fragment {
         @Override
         public void onClick(View view) {
             Utils.goTo(getActivity(), PaymentActivity.class);
+        }
+    };
+
+    View.OnClickListener customerOrderslistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Utils.goTo_withExtra(getActivity(), OrdersListActivity.class, "Customer");
         }
     };
 

@@ -288,4 +288,20 @@ public class Product implements Serializable {
                 });
         return products;
     }
+
+    @Exclude
+    public static LiveData<Product> getProductByID(String ID){
+        MutableLiveData<Product> product = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Products")
+                .document(ID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Product res = documentSnapshot.toObject(Product.class);
+                        product.postValue(res);
+                    }
+                });
+        return product;
+    }
 }

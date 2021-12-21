@@ -12,16 +12,9 @@ import com.example.kanete.Models.User;
 public class AccountStoreViewModel extends ViewModel {
 
     private final Activity this_activity;
-    private MutableLiveData<String> mText;
 
     public AccountStoreViewModel(Activity activity) {
         this_activity = activity;
-        mText = new MutableLiveData<>();
-        mText.setValue("This is a store account fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
     }
 
     public void sign_out(){

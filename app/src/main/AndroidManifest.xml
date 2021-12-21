@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kanete">
         <activity
+            android:name=".OrderManager.OrdersListActivity"
+            android:exported="true" />
+        <activity
             android:name=".Customer.Payment.PaymentActivity"
             android:exported="true" />
         <activity

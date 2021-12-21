@@ -231,4 +231,20 @@ public class Address {
                 });
         return myDefaultAddress;
     }
+
+    @Exclude
+    public static LiveData<Address> getAddressByID(String ID){
+        MutableLiveData<Address> address = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Addresses")
+                .document(ID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Address res = documentSnapshot.toObject(Address.class);
+                        address.postValue(res);
+                    }
+                });
+        return address;
+    }
 }
