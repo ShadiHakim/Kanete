@@ -101,19 +101,9 @@ public class CartItem {
         return cartProducts;
     }
 
-    public void removeFormCart(List<CartItem> cartItems) {
-        for (CartItem cartItem :
-                cartItems) {
-            FirebaseFirestore.getInstance().collection("CartItems")
-                    .document(cartItem.getID())
-                    .delete()
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-
-                        }
-                    });
-        }
-
+    public void removeFormCart() {
+        FirebaseFirestore.getInstance().collection("CartItems")
+                .document(this.getID())
+                .delete();
     }
 }

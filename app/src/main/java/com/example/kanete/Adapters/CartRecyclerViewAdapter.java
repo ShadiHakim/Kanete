@@ -71,12 +71,15 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         Picasso.get().load(product.getImages().get(0)).into(holder.imageViewProductitem);
         holder.textViewNameProductitem.setText(product.getName());
         holder.textViewPriceProductitem.setText(product.getPrice() + " ₪");
-        CartItem cartItem = cartItems.stream()
+        List<CartItem> tempcartItems = cartItems.stream()
                 .filter(item -> item.getProduct_ID()
                 .equals(product.getID()))
-                .collect(Collectors.toList()).get(0);
-        holder.textViewQuantityProductitem.setText("* " + cartItem.getQuantity());
-        holder.checkBoxSelectProduct.setTag(cartItem);
+                .collect(Collectors.toList());
+        if (!tempcartItems.isEmpty()){
+            CartItem cartItem = tempcartItems.get(0);
+            holder.textViewQuantityProductitem.setText("* " + cartItem.getQuantity());
+            holder.checkBoxSelectProduct.setTag(cartItem);
+        }
     }
 
     @Override

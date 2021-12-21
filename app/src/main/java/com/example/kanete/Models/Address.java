@@ -205,4 +205,30 @@ public class Address {
         }
         return flag;
     }
+
+    @Exclude
+    public static LiveData<Address> getDefault(){
+        MutableLiveData<Address> myDefaultAddress = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Addresses")
+                .whereEqualTo("customer_UID", new User().getUID())
+                .whereEqualTo("default_adr", true)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots != null) {
+                            if (queryDocumentSnapshots.getDocuments().isEmpty()){
+                                myDefaultAddress.postValue(null);
+                            }
+                            for (DocumentSnapshot documentSnapshot :
+                                    queryDocumentSnapshots.getDocuments()) {
+                                Address defAdrr = documentSnapshot.toObject(Address.class);
+                                defAdrr.setID(documentSnapshot.getId());
+                                myDefaultAddress.postValue(defAdrr);
+                            }
+                        }
+                    }
+                });
+        return myDefaultAddress;
+    }
 }

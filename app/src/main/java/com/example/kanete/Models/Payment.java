@@ -178,4 +178,30 @@ public class Payment {
         }
         return flag;
     }
+
+    @Exclude
+    public static LiveData<Payment> getDefault(){
+        MutableLiveData<Payment> myDefaultPayment = new MutableLiveData<>();
+        FirebaseFirestore.getInstance().collection("Payments")
+                .whereEqualTo("customer_UID", new User().getUID())
+                .whereEqualTo("default_pay", true)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots != null) {
+                            if (queryDocumentSnapshots.getDocuments().isEmpty()){
+                                myDefaultPayment.postValue(null);
+                            }
+                            for (DocumentSnapshot documentSnapshot :
+                                    queryDocumentSnapshots.getDocuments()) {
+                                Payment defPay = documentSnapshot.toObject(Payment.class);
+                                defPay.setID(documentSnapshot.getId());
+                                myDefaultPayment.postValue(defPay);
+                            }
+                        }
+                    }
+                });
+        return myDefaultPayment;
+    }
 }
