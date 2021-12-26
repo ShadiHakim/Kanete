@@ -111,12 +111,7 @@ public class CartFragment extends Fragment implements CartRecyclerViewAdapter.Pr
         @Override
         public void onClick(View v) {
             cartViewModel.removeSelectedItemsFormCart();
-            constraintLayoutCartEdit.setVisibility(View.GONE);
-            buttonBuy.setText(R.string.CartFragment_Buy_All);
-            cartRecyclerViewAdapter.setFlagVisible(false);
-            cartRecyclerViewAdapter.setAllChecked(false);
-            checkBoxSelectAll.setChecked(false);
-            cartViewModel.removeAllSelected();
+            resetCartViews();
         }
     };
 
@@ -225,6 +220,7 @@ public class CartFragment extends Fragment implements CartRecyclerViewAdapter.Pr
         cartRecyclerViewAdapter.setAllChecked(false);
         checkBoxSelectAll.setChecked(false);
         cartViewModel.removeAllSelected();
+        cartRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override

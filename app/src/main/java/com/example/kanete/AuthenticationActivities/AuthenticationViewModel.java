@@ -26,10 +26,10 @@ public class AuthenticationViewModel extends ViewModel {
         user.signup_auth(type, email, password, customer, store);
     }
 
-    public void login_auth(String email, String password){
+    public LiveData<Boolean> login_auth(String email, String password){
         User user = new User();
         user.setThis_activity(this_activity);
 
-        user.login_auth(email, password);
+        return user.login_auth(email, password);
     }
 }

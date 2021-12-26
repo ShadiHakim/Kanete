@@ -1,12 +1,14 @@
 package com.example.kanete.AuthenticationActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.kanete.Customer.CustomerMainActivity;
@@ -22,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button buttonLogin;
     private TextView textViewSignup;
+    private ProgressBar progressBarlogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextLoginPassword = findViewById(R.id.editTextLoginPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         textViewSignup = findViewById(R.id.textViewSignup);
+        progressBarlogin = findViewById(R.id.progressBarlogin);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +66,13 @@ public class LoginActivity extends AppCompatActivity {
         flag &= AuthenticationUtils.checkPassword(password, editTextLoginPassword);
 
         if (flag){
-            authenticationViewModel.login_auth(email, password);
+            progressBarlogin.setVisibility(View.VISIBLE);
+            authenticationViewModel.login_auth(email, password).observeForever(new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean aBoolean) {
+                    progressBarlogin.setVisibility(View.GONE);
+                }
+            });
         }
     }
 }

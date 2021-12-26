@@ -59,7 +59,7 @@ public class CartItem {
     }
 
     @Exclude
-    public LiveData<Boolean> addToCart(){ // TODO check if already added
+    public LiveData<Boolean> addToCart(){
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
         FirebaseFirestore.getInstance().collection("CartItems")
                 .add(this)

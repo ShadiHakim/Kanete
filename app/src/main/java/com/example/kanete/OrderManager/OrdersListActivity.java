@@ -44,10 +44,10 @@ public class OrdersListActivity extends AppCompatActivity implements OrderRecycl
         recyclerViewOrderList = findViewById(R.id.recyclerViewOrderList);
         dialog = new Dialog(OrdersListActivity.this);
 
-        setup_recyclerViewProducts();
+        setup_recyclerViewOrders();
     }
 
-    public void setup_recyclerViewProducts(){
+    public void setup_recyclerViewOrders(){
         orderViewModel.getOrders().observeForever(new Observer<List<Order>>() {
             @Override
             public void onChanged(List<Order> orders) {

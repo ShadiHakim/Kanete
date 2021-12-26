@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.kanete.AuthenticationActivities.LoginActivity;
 import com.example.kanete.Customer.CustomerMainActivity;
@@ -137,12 +139,14 @@ public class User {
                 });
     }
 
-    public void login_auth(String email, String password){
+    public LiveData<Boolean> login_auth(String email, String password){
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         type_login();
+                        flag.postValue(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -151,6 +155,7 @@ public class User {
                         Toast.makeText(this_activity, "failed", Toast.LENGTH_SHORT).show();
                     }
                 });
+        return flag;
     }
 
     public void type_login(){
